@@ -16,10 +16,12 @@ class Triangle
     else
       if @side_lengths.all? {|sl| sl == @side_lengths[0]}
         :equilateral
-
+      elsif @side_lengths.uniq.length == 2
+        :isosceles
+      elsif @side_lenghts.uniq.length == 3
+        :scalene
+      end
     end
-  end
-
   class TriangleError < StandardError
   end
 end
