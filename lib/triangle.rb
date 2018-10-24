@@ -11,6 +11,12 @@ class Triangle
   def kind
     if @side_lengths.any? {|sl| sl == 0}
       raise TriangleError
+    elsif (@sl1+@sl2 <= @sl3) || (@sl1+@sl3 <= @sl2) || (@sl2+@sl3 <= @sl1)
+      raise TriangleError
+    else
+      if @side_lengths.all? {|sl| sl == @side_lengths[0]}
+        :equilateral
+
     end
   end
 
