@@ -3,14 +3,16 @@ class Triangle
   def initialize(sl1, sl2, sl3)
     @sl1 = sl1
     @sl2 = sl2
-    @sl3 = sl3 
+    @sl3 = sl3
     @side_lengths = []
   end
 
   def kind
     if @side_lengths.any? {|sl| sl == 0}
-      
+      raise TriangleError
+    end
+  end
 
-  def kind
-    if 
+  class TriangleError < StandardError
+  end
 end
