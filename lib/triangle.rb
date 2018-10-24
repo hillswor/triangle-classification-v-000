@@ -1,29 +1,39 @@
 class Triangle
-  #sl1 = Side Length 1, sl2 = Side Length 2, sl3 = Side Length 3
-  def initialize(sl1, sl2, sl3)
-    @sl1 = sl1
-    @sl2 = sl2
-    @sl3 = sl3
-    @side_lengths = []
-    @side_lengths << self
+  def initialize(side_1, side_2, side_3)
+    @triangle_sides = []
+    @triangle_sides << side_1
+    @triangle_sides << side_2
+    @triangle_sides << side_3
+  end
+
+  def valid?
+    sum_one_two = @triangle_sides[0] + @triangle_sides[1]
+    sum_one_three = @triangle_sides[0] + @triangle_sides[2]
+    sum_two_three = @triangle_sides[1] + @triangle_sides[2]
+
+    if (@triangle_sides.none? {|side| side <= 0}) &&
+      (sum_one_two > @triangle_sides[2] && sum_one_three > @triangle_sides[1] && sum_two_three > @triangle_sides[0])
+      return true
+    else
+      return false
+    end
   end
 
   def kind
-    if @side_lengths.any? {|sl| sl == 0}
-      raise TriangleError
-    elsif (@sl1+@sl2 <= @sl3) || (@sl1+@sl3 <= @sl2) || (@sl2+@sl3 <= @sl1)
-      raise TriangleError
-    else
-      if @side_lengths.all? {|sl| sl == @side_lengths[0]}
-        :equilateral
-      elsif @side_lengths.uniq.length == 2
-        :isosceles
-      elsif @side_lenghts.uniq.length == 3
-        :scalene
+    if valid?
+      if @triangle_sides.uniq.length == 1
+        return :equilateral
+      elsif @triangle_sides.uniq.length == 2
+        return :isosceles
+      else
+        return :scalene
       end
+    else
+      raise TriangleError
     end
   end
 end
 
 class TriangleError < StandardError
+
 end
