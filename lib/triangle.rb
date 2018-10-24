@@ -1,3 +1,7 @@
 class Triangle
-  # write code here
+  def initialize(side_length_one, side_length_two, side_length_three)
+    @side_length_one = side_length_one
+    @side_length_two = side_length_two
+    @side_length_three = side_length_three
+  end
 end
