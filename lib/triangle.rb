@@ -5,6 +5,7 @@ class Triangle
     @sl2 = sl2
     @sl3 = sl3
     @side_lengths = []
+    @side_lengths << self
   end
 
   def kind
